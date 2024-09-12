@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-service
+spec:
+  selector:
+    app: my-server
+  ports:
+  - protocol: TCP
+    port: 5555
+    targetPort: 5555
+  sessionAffinity: None  # 確保沒有啟用會話親和性
+  type: LoadBalancer

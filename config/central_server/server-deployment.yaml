@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  selector:
+    matchLabels:
+      app: my-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-server
+    spec:
+      containers:
+      - name: server-container
+        image: d9vupsj6t3/server:v07
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5555
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "500Mi"
+          limits:
+            cpu: "2"
+            memory: "1Gi"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5555
+          initialDelaySeconds: 20
+          periodSeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 5555
+          initialDelaySeconds: 20
+          periodSeconds: 30
+          timeoutSeconds: 5
+      imagePullSecrets:
+      - name: regcred

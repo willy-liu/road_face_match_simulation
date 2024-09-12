@@ -1,0 +1,31 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: server-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: server-deployment
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 900
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 15  # 穩定窗口， 在15秒內如果持續符合擴容要求就會擴容，為了方便demo設短一點。
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 180  # 3分鐘內最多增加一個Pod，避免一次開太多負擔太大
+    scaleDown:
+      stabilizationWindowSeconds: 60 # 穩定窗口，一樣為了demo設的短一點 
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
