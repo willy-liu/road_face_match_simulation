@@ -30,3 +30,18 @@ Deploy the mysql database and phpmyadmin for easy access
 - phpmyadmin service configuration
     - port: 80
     - targetPort: 80
+
+## ingress
+Configure ingress to expose the flask application
+- ingress resource configuration
+    - kind: `Ingress`
+    - apiVersion: `networking.k8s.io/v1`
+    - host: `192.168.0.130.nip.io` (uses nip.io for dynamic DNS)
+    - annotations:
+        - `nginx.ingress.kubernetes.io/rewrite-target: /`
+- rules
+    - path: `/`
+    - pathType: `Prefix`
+    - backend service:
+        - name: `flask-service`
+        - port: `5555`
