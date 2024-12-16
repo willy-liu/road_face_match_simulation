@@ -1,0 +1,8 @@
+mysql-connector-python==8.0.33
+flask==2.3.2
+torch==2.2.0
+torchvision==0.17.0
+facenet-pytorch==2.6.0
+numpy==1.24.3
+opencv-python-headless
+flask-mysql
