@@ -63,6 +63,8 @@ The overall system architecture can be summarized as follows:
     *   **Initial State**: When idle, server CPU usage is very low.
     *   **Increased Load**: As the number of simulated edge devices increases, HPA automatically increases the number of server replicas, and CPU usage stays balanced.
     *   **Decreased Load**: When the number of simulated edge devices decreases, HPA automatically reduces the number of server replicas to save resources.
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+<img width="825" alt="image" src="https://github.com/user-attachments/assets/2f8218eb-5455-468c-86ea-bf9004da03eb" />
+<img width="819" alt="image" src="https://github.com/user-attachments/assets/884429f8-1bf2-406a-bb3b-0d4a5dd941c1" />
+<img width="753" alt="image" src="https://github.com/user-attachments/assets/cdfddd67-28e3-407b-b4cb-2bd787cd2f20" />
+
+ 
