@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Recognition Results</title>
+</head>
+<body>
+    <h1>Uploaded Image</h1>
+    <img src="data:image/jpeg;base64,{{ uploaded_image }}" alt="Uploaded Image">
+    <h2>Matches</h2>
+    <table border="1">
+        <tr>
+            <th>Source</th>
+            <th>Timestamp</th>
+            <th>Face Image</th>
+        </tr>
+        {% for match in matches %}
+        <tr>
+            <td>{{ match.source }}</td>
+            <td>{{ match.time_stamp }}</td>
+            <td><img src="data:image/jpeg;base64,{{ match.face_image_rgb }}" alt="Face Image"></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
